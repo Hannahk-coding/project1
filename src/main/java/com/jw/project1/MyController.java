@@ -11,6 +11,6 @@ public class MyController {
 	
 	@GetMapping
 	public @ResponseBody String view() throws Exception{
-		return "Hello";
+		return "Hello World";
 	}
 }
