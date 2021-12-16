@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 30초마다 설정 파일의 변경을 확인 하여 변경시 갱신 -->
 <configuration scan="true" scanPeriod="30 seconds">
-	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <Pattern>%d{HH:mm} %-5level %logger{36} - %msg%n</Pattern>
+	<include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+	
+	<!--property 설정 -->
+    <!-- setting -->
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+	
+	<!-- property -->
+	<property name="CONTEXT_NAME" value="${context_name}" />
+	<property name="LOG_PATH" value="${log_path:-/data/log}" />
+	<contextName>${CONTEXT_NAME}</contextName>    
+	
+	<!-- pattern -->
+	<property name="LOG_PATTERN_test_1"
+            value="%d{yyyy-MM-dd HH:mm:ss} [%thread] [%contextName] [ %X{springAppName:-},%X{traceId:-},%X{spanId:-},%X{key:-} ] %highlight(%-5level) %logger{36} - %msg%n"/>
+    <property name="LOG_PATTERN_test_2"
+              value="%d{yyyy-MM-dd HH:mm:ss} [%thread] [%contextName] [%contextName] [%X{trace_id}] %highlight(%-5level) %logger{36} - %msg%n"/>
+    <property name="LOG_PATTERN"
+			  value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+	
+	<!-- STDOUT log -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
         </encoder>
     </appender>
 	
+	<!-- FILE log -->
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/tmp/access.log</file>
+        <file>${LOG_PATH}/${springAppName}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/tmp/access-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/${springAppName}/backup/${springAppName}.log.%d{yyyy-MM-dd}</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<!-- or whenever the file size reaches 100MB -->
 				<maxFileSize>5MB</maxFileSize>
@@ -18,27 +40,25 @@
 			</timeBasedFileNamingAndTriggeringPolicy>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
-	
         <encoder>
-            <Pattern>%d{HH:mm} %-5level %logger{36} - %msg%n</Pattern>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
         </encoder>
     </appender>
 
-	<logger name="org.springframework" level="info"/>
-    <logger name="kr.or.connect" level="debug"/>
-
-    <root level="debug">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
+    <root level="INFO">
+        <springProfile name="local,dev"> 
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="JSON_FILE" />
+        </springProfile>
+        <springProfile name="stg"> 
+            <appender-ref ref="STDOUT" />
+            <!-- <appender-ref ref="JSON_FILE" /> -->
+        </springProfile>
+        <springProfile name="prod"> 
+            <appender-ref ref="STDOUT" />
+		</springProfile>
     </root>
-    
-    <!--로그 파일 저장 위치 -->
-    <!-- dev env --> 
-    <springProfile name="dev"> 
-    	<logger name="org.springframework.boot" level="WARN" /> 
-    	<logger name="org.springframework.web" level="DEBUG" /> 
-    </springProfile>
-    
-    
     
 </configuration>

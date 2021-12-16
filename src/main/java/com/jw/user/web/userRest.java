@@ -1,6 +1,8 @@
 package com.jw.user.web;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class userRest {
 	
 	private final userService service;
+	
 	public userRest(final userService service) {
 		this.service = service;
 	}
@@ -24,15 +27,15 @@ public class userRest {
 	@GetMapping
 	public Object user() throws Exception{
 		log.debug("/user start");
-		
-		User user = new User();
-		user.setId("proj");
-		user.setName("김지우");
-		user.setEmail("abcd@gmail.com");
-		user.setCreate_time(String.valueOf(new Date()));
-		
-		return user;
+		User u = User.builder().email("").id("").createTime(null).build();
+		return u;
 	}
 	
-	
+	@GetMapping("/test")
+	public Map<String, String> jsonTest() {
+		Map<String, String> res = new HashMap<>();
+		res.put("test", "hi");
+		
+		return res;
+	}
 }

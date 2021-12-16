@@ -1,17 +1,20 @@
 package com.jw.user.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import java.util.Date;
 
-@Getter
-@Setter
-@ToString
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@Builder
 public class User {
 	
 	private String id;
 	private String name;
 	private String email;
-	private String create_time;
+	private Date createTime;
 	
 }
