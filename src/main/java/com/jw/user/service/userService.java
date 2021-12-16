@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class userService {
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	
 	
 }

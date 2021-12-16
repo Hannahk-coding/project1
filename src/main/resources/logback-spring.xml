@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 30초마다 설정 파일의 변경을 확인 하여 변경시 갱신 -->
 <configuration scan="true" scanPeriod="30 seconds">
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -10,9 +11,14 @@
         <file>/tmp/access.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>/tmp/access-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>5MB</maxFileSize>
+				<!-- kb, mb, gb -->
+			</timeBasedFileNamingAndTriggeringPolicy>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
-
+	
         <encoder>
             <Pattern>%d{HH:mm} %-5level %logger{36} - %msg%n</Pattern>
         </encoder>
@@ -26,32 +32,13 @@
         <appender-ref ref="FILE"/>
     </root>
     
-<!--      <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}[%-5level] : %msg%n</pattern>
-        </encoder>
-    </appender>
-    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
-        </filter>
-        <file>log.txt</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            rollover daily
-            <fileNamePattern>log-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
-            <timeBasedFileNamingAndTriggeringPolicy
-                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                or whenever the file size reaches 100MB
-                <maxFileSize>100MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-        </rollingPolicy>
-        <encoder>
-            <pattern>[%-5level] %d{HH:mm:ss.SSS} %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
-    <root level="debug">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="ROLLING"/>
-    </root> -->
+    <!--로그 파일 저장 위치 -->
+    <!-- dev env --> 
+    <springProfile name="dev"> 
+    	<logger name="org.springframework.boot" level="WARN" /> 
+    	<logger name="org.springframework.web" level="DEBUG" /> 
+    </springProfile>
+    
+    
     
 </configuration>
