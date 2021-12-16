@@ -10,7 +10,7 @@
 	<!-- property -->
 	<property name="CONTEXT_NAME" value="${context_name}" />
 	<property name="LOG_PATH" value="${log_path:-/data/log}" />
-	<contextName>${CONTEXT_NAME}</contextName>    
+	<contextName>${CONTEXT_NAME}</contextName>
 	
 	<!-- pattern -->
 	<property name="LOG_PATTERN_test_1"
