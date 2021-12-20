@@ -9,16 +9,11 @@
 	
 	<!-- property -->
 	<property name="CONTEXT_NAME" value="${context_name}" />
-	<property name="LOG_PATH" value="${log_path:-/data/log}" />
+	<property name="LOG_PATH" value="C:\workspace\logs" />
 	<contextName>${CONTEXT_NAME}</contextName>
 	
 	<!-- pattern -->
-	<property name="LOG_PATTERN_test_1"
-            value="%d{yyyy-MM-dd HH:mm:ss} [%thread] [%contextName] [ %X{springAppName:-},%X{traceId:-},%X{spanId:-},%X{key:-} ] %highlight(%-5level) %logger{36} - %msg%n"/>
-    <property name="LOG_PATTERN_test_2"
-              value="%d{yyyy-MM-dd HH:mm:ss} [%thread] [%contextName] [%contextName] [%X{trace_id}] %highlight(%-5level) %logger{36} - %msg%n"/>
-    <property name="LOG_PATTERN"
-			  value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+    <property name="LOG_PATTERN" value="%-4relative [%thread] %-5level %logger{35} - %msg%n"/>
 	
 	<!-- STDOUT log -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -32,7 +27,7 @@
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/${springAppName}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/${springAppName}/backup/${springAppName}.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<!-- or whenever the file size reaches 100MB -->
 				<maxFileSize>5MB</maxFileSize>
