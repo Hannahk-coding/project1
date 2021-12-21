@@ -12,13 +12,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 import com.zaxxer.hikari.HikariDataSource;
 
 @ComponentScan(basePackages = "com.jw.project1.service")
 @MapperScan(basePackages = "com.jw.project1.mapper", sqlSessionFactoryRef = "sqlSessionFactory")
 @Configuration
-public class DataSourceConfig {
+public class DataSourceConfig implements TransactionManagementConfigurer {
 	
 	// Hikari DataSource	
 	@Bean
@@ -40,4 +43,14 @@ public class DataSourceConfig {
     public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
+	
+	@Bean
+	public PlatformTransactionManager transactionManager() {
+		return new DataSourceTransactionManager(datasource());
+	}
+	
+	@Override
+	public PlatformTransactionManager annotationDrivenTransactionManager() {
+		return transactionManager();
+	}
 }
