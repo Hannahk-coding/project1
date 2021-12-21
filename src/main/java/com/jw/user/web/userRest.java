@@ -1,6 +1,7 @@
 package com.jw.user.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,5 +37,12 @@ public class userRest {
 		res.put("test", "hi");
 		
 		return res;
+	}
+	
+//	===================================================================================
+	
+	@GetMapping("/list")
+	public List<User> getUserList() throws Exception {
+		return service.getUserList();
 	}
 }
