@@ -12,9 +12,13 @@ import org.springframework.context.annotation.PropertySource;
 public class Application {
 	
 	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(Application.class);
-		app.addListeners(new ApplicationPidFileWriter());
-		app.run(args);
-//		SpringApplication.run(Project1Application.class, args);
+		try {
+			SpringApplication app = new SpringApplication(Application.class);
+			app.addListeners(new ApplicationPidFileWriter());
+			app.run(args);
+	//		SpringApplication.run(Project1Application.class, args);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

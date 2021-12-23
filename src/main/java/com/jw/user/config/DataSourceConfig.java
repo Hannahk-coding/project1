@@ -6,28 +6,41 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
+import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-@ComponentScan(basePackages = "com.jw.project1.service")
-@MapperScan(basePackages = "com.jw.project1.mapper", sqlSessionFactoryRef = "sqlSessionFactory")
-@Configuration
+@ComponentScan(basePackages = "com.jw.user.service")
+@MapperScan(basePackages = "com.jw.user.mapper", sqlSessionFactoryRef = "sqlSessionFactory")
+@Configuration	
+@PropertySource("classpath:application-${spring.profiles.active:dev}.properties")
 public class DataSourceConfig implements TransactionManagementConfigurer {
+		
+	@Autowired
+	private ApplicationContext applicationContext;
 	
-	// Hikari DataSource	
+	// Hikari DataSource
 	@Bean
 	@ConfigurationProperties(prefix = "spring.datasource.hikari")
+	public HikariConfig hikariConfig() {
+		return new HikariConfig();
+	}
+	
+	@Bean
 	public DataSource datasource() {
-		return DataSourceBuilder.create().type(HikariDataSource.class).build();
+		return new HikariDataSource(hikariConfig());
 	}
 	
 	// SqlSessionFactory
@@ -35,13 +48,20 @@ public class DataSourceConfig implements TransactionManagementConfigurer {
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(datasource());
-		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
+		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/*.xml"));
+		sqlSessionFactory.setConfiguration(mybatisConfig());
 		return sqlSessionFactory.getObject();
 	}
 	
 	@Bean
     public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
+	}
+	
+    @Bean
+    @ConfigurationProperties(prefix="mybatis.configuration")
+    public org.apache.ibatis.session.Configuration mybatisConfig() {
+    	return new org.apache.ibatis.session.Configuration();
     }
 	
 	@Bean
