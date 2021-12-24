@@ -16,7 +16,6 @@ public class Application {
 			SpringApplication app = new SpringApplication(Application.class);
 			app.addListeners(new ApplicationPidFileWriter());
 			app.run(args);
-	//		SpringApplication.run(Project1Application.class, args);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

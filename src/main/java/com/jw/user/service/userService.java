@@ -9,17 +9,9 @@ import com.jw.user.model.User;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
-@RequiredArgsConstructor
-public class userService {
-	
-	private UserMapper userMapper;
+public interface userService {
 	
 	/** 회원 목록 조회 */
-	public List<User> getUserList() throws Exception {
-		return userMapper.getUserList();
-	}
-	
-	
+	public List<User> getUserList() throws Exception;
 	
 }
