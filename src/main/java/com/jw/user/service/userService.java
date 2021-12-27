@@ -16,7 +16,7 @@ public interface userService {
 	public User registerUser(User user);
 
 	/** 회원 정보 수정 */
-	public void modifyUser(String id, User user);
+	public void modifyUser(int user_seq, User user);
 	
 	/** 회원 삭제 */
 	public void removeUser(String id);

@@ -24,7 +24,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 @Api(tags = "사용자 관련한 API : /user")
-@Slf4j
 @RestController
 @RequestMapping({"/user","/user/v1"})
 public class userRest {
@@ -37,7 +36,6 @@ public class userRest {
 	
 //	@GetMapping
 //	public Object user() throws Exception{
-//		log.debug("/user start");
 //		User u = User.builder().email("").id("").createTime(null).build();
 //		return u;
 //	}
@@ -78,8 +76,8 @@ public class userRest {
 	@ApiOperation(value = "사용자 수정", notes = "사용자 정보를 수정합니다.")
 	@ResponseStatus(value = HttpStatus.OK)
 	@PutMapping("/modify/{id}")
-	public void modifyUser(@PathVariable String id, @RequestBody User user) {
-		service.modifyUser(id, user);
+	public void modifyUser(@PathVariable int user_seq, @RequestBody User user) {
+		service.modifyUser(user_seq, user);
 	}
 	
 	@ApiOperation(value = "사용자 삭제", notes = "사용자를 삭제합니다.")

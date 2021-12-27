@@ -16,7 +16,7 @@ public interface UserMapper {
 
 	public User registerUser(User user);
 
-	public void modifyUser(String id, User user);
+	public void modifyUser(int user_seq, User user);
 
 	public void removeUser(String id);
 }	

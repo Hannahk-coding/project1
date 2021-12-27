@@ -6,4 +6,45 @@
 		SELECT *
 		  FROM user
 	</select>
+	
+	<select id="getUserById" parameterType="String" resultType="com.jw.user.model.User">
+		SELECT *
+		  FROM user
+		 WHERE id = #{id}
+	</select>
+	
+	<insert id="registerUser" parameterType="com.jw.user.model.User">
+		<selectKey resultType="int" keyProperty="user_seq" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		
+		insert into user
+			(
+				 id
+			   , name
+			   , email
+			   , createTime
+			)
+		values
+			(
+			   #{id}
+			 , #{name}
+			 , #{email}
+			 , NOW()
+			 )
+	</insert>
+	
+	<update id="modifyUser" parameterType="com.jw.user.model.User">
+		UPDATE user
+		   SET id = #{id}
+		     , name = #{name}
+		     , email = #{email}
+		 WHERE user_seq = #{user_seq}	
+	</update>
+	
+	<delete id="removeUser" parameterType="String">
+		DELETE
+		  FROM user
+		 WHERE id = #{id}
+	</delete>
 </mapper>			

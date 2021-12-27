@@ -32,8 +32,8 @@ public class userServiceImpl implements userService {
 	}
 
 	@Override
-	public void modifyUser(String id, User user) {
-		mapper.modifyUser(id, user);
+	public void modifyUser(int user_seq, User user) {
+		mapper.modifyUser(user_seq, user);
 	}
 
 	@Override
