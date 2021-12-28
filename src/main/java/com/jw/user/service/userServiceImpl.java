@@ -13,8 +13,11 @@ import lombok.Setter;
 @Service
 public class userServiceImpl implements userService {
 	
-	@Setter(onMethod_ = {@Autowired})
-	private UserMapper mapper;
+	private final UserMapper mapper;
+	
+	public userServiceImpl(final UserMapper mapper) {
+		this.mapper = mapper;
+	}
 	
 	@Override
 	public List<User> getUserList() throws Exception {
@@ -32,8 +35,8 @@ public class userServiceImpl implements userService {
 	}
 
 	@Override
-	public void modifyUser(int user_seq, User user) {
-		mapper.modifyUser(user_seq, user);
+	public void modifyUser(User user) {
+		mapper.modifyUser(user);
 	}
 
 	@Override

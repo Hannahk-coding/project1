@@ -13,7 +13,7 @@ import lombok.Data;
 
 @ApiModel(value = "사용자 정보 : User", description = "사용자 정보")
 @XmlRootElement(name = "user")
-@XmlType(propOrder = {"user_seq", "id", "name", "email", "createTime"})
+@XmlType(propOrder = {"id", "name", "email", "createTime"})
 @Data
 @Alias("user")
 public class User {
@@ -21,8 +21,6 @@ public class User {
 	public User() {
 	}
 	
-	@ApiModelProperty(value = "사용자 번호")
-	private int user_seq;
 	@ApiModelProperty(value = "사용자 아이디")
 	private String id;
 	@ApiModelProperty(value = "사용자 이름")

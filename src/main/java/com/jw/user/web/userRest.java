@@ -34,22 +34,6 @@ public class userRest {
 		this.service = service;
 	}
 	
-//	@GetMapping
-//	public Object user() throws Exception{
-//		User u = User.builder().email("").id("").createTime(null).build();
-//		return u;
-//	}
-	
-	@GetMapping("/test")
-	public Map<String, String> jsonTest() {
-		Map<String, String> res = new HashMap<>();
-		res.put("test", "hi");
-		
-		return res;
-	}
-	
-//	===================================================================================
-	
 	@ApiOperation(value = "사용자 목록 조회", notes = "사용자 목록을 조회합니다.")
 	@GetMapping
 	public ModelAndView getUserList() throws Exception {
@@ -67,21 +51,18 @@ public class userRest {
 	}
 	
 	@ApiOperation(value = "사용자 등록", notes = "사용자를 등록합니다.")
-	@ResponseStatus(value = HttpStatus.CREATED)
 	@PostMapping("")
 	public User registerUser(@RequestBody User user) {
 		return service.registerUser(user);
 	}
 	
 	@ApiOperation(value = "사용자 수정", notes = "사용자 정보를 수정합니다.")
-	@ResponseStatus(value = HttpStatus.OK)
 	@PutMapping("/modify/{id}")
-	public void modifyUser(@PathVariable int user_seq, @RequestBody User user) {
-		service.modifyUser(user_seq, user);
+	public void modifyUser(@RequestBody User user) {
+		service.modifyUser(user);
 	}
 	
 	@ApiOperation(value = "사용자 삭제", notes = "사용자를 삭제합니다.")
-	@ResponseStatus(value = HttpStatus.OK)
 	@DeleteMapping("/delete/{id}")
 	public void removeUser(@PathVariable String id) {
 		service.removeUser(id);

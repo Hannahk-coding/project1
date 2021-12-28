@@ -1,14 +1,16 @@
 package com.jw.user;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@ComponentScan("com.jw.user")
+@ComponentScan("com.jw")
 @PropertySource("classpath:application-${spring.profiles.active:dev}.properties")
+@EnableAutoConfiguration
 public class Application {
 	
 	public static void main(String[] args) {

@@ -10,14 +10,14 @@ import com.jw.user.model.User;
 @Mapper
 public interface UserMapper {
 	
-	public List<User> getUserList() throws Exception;
+	List<User> getUserList() throws Exception;
 
-	public User getUserById(String id);
+	User getUserById(String id);
 
-	public User registerUser(User user);
+	User registerUser(User user);
 
-	public void modifyUser(int user_seq, User user);
+	void modifyUser(User user);
 
-	public void removeUser(String id);
+	void removeUser(String id);
 }	
 	

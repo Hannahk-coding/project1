@@ -57,29 +57,25 @@
 			<groupId>org.springframework.boot</groupId> 
 			<artifactId>spring-boot-devtools</artifactId> 
 		</dependency>
-
-		<!-- MariaDB --> 
-		<dependency> 
-			<groupId>org.mariadb.jdbc</groupId> 
-			<artifactId>mariadb-java-client</artifactId> 
-		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
 		<dependency> 
 			<groupId>org.mybatis.spring.boot</groupId> 
 			<artifactId>mybatis-spring-boot-starter</artifactId> 
 			<version>2.2.0</version> 
 		</dependency>
         
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        
 		<!-- jpa -->
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		
-	<!--  	<dependency>
-			<groupId>com.zaxxer</groupId>
-			<artifactId>HikariCP</artifactId>
-			<version>4.0.3</version>
-		</dependency> -->
 		
 		<!-- JUnit4 사용하기 위해서 Vintage Engine 모듈을 제외 -->
         <dependency>
@@ -141,15 +137,20 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.6.1.Final</version>
         </dependency>
+ 		
+ 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
  		
  		 <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.4.200</version>
+            <scope>runtime</scope>
         </dependency>
-		</dependencies>
+	</dependencies>
+		
 	<build>
 		<plugins>
 			<plugin>

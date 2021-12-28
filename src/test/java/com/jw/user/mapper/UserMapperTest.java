@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jw.user.model.User;
 
-@Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserMapperTest {
