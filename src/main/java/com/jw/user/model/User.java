@@ -12,8 +12,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @ApiModel(value = "사용자 정보 : User", description = "사용자 정보")
-@XmlRootElement(name = "user")
-@XmlType(propOrder = {"id", "name", "email", "createTime"})
 @Data
 @Alias("user")
 public class User {

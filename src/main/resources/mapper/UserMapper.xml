@@ -2,18 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jw.user.mapper.UserMapper">
-	<select id="getUserList" resultType="com.jw.user.model.User">
+	<select id="getUserList" resultType="User">
 		SELECT *
 		  FROM user
 	</select>
 	
-	<select id="getUserById" parameterType="String" resultType="com.jw.user.model.User">
+	<select id="getUserById" parameterType="String" resultType="User">
 		SELECT *
 		  FROM user
 		 WHERE id = #{id}
 	</select>
 	
-	<insert id="registerUser" parameterType="com.jw.user.model.User">
+	<insert id="registerUser" parameterType="User">
 		insert into user
 			(
 				 id
