@@ -2,7 +2,6 @@ package com.jw.user.web;
 
 import java.util.List;
 
-import org.apache.maven.model.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,7 +25,7 @@ public class userController {
 	
 	@GetMapping("/list")
 	public ModelAndView getUserList() throws Exception {
-		ModelAndView mv = new ModelAndView("/user/userList");
+		ModelAndView mv = new ModelAndView("user/userList");
 		List<User> list = service.getList();
 		mv.addObject("list", list);
 		return mv;
