@@ -2,14 +2,13 @@ package com.jw.user.web;
 
 import java.util.List;
 
+import org.apache.maven.model.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jw.user.model.User;
 import com.jw.user.service.userService;
-
-import io.swagger.annotations.ApiOperation;
 
 @Controller
 public class userController {
@@ -25,14 +24,11 @@ public class userController {
 		return "index";
 	}
 	
-	@ApiOperation(value = "사용자 목록 조회", notes = "사용자 목록을 조회합니다.")
-	@GetMapping
+	@GetMapping("/list")
 	public ModelAndView getUserList() throws Exception {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mv = new ModelAndView("/user/userList");
 		List<User> list = service.getList();
-		mav.addObject("list", list);
-		mav.setViewName("userList");
-		return mav;
+		mv.addObject("list", list);
+		return mv;
 	}
-	
 }

@@ -9,14 +9,14 @@ import com.jw.user.model.User;
 @Mapper
 public interface UserMapper {
 	
-	List<User> selectAll();
+	List<User> selectAll() throws Exception;
 
-	User selectById(String id);
+	User selectById(String id) throws Exception;
 
-	User insert(User user);
+	User insert(User user) throws Exception;
 
-	void update(User user);
+	void update(User user) throws Exception;
 
-	void delete(String id);
+	void delete(String id) throws Exception;
 }	
 	
