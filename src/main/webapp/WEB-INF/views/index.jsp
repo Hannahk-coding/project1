@@ -21,7 +21,7 @@
       <tr>
         <td>이메일:</td>
         <td>
-            <input type="text" placeholder="ex) abcd@email.com">
+            <input type="text">
         </td>
       </tr>
       <tr>

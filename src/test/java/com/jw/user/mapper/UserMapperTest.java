@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.jw.user.model.User;
 
@@ -16,13 +15,17 @@ import com.jw.user.model.User;
 @SpringBootTest
 public class UserMapperTest {
 	
-	private UserMapper mapper;
+	private final UserMapper mapper;
+	
+	public UserMapperTest(UserMapper mapper) {
+		this.mapper = mapper;
+	}
 	
 	@Test
 	public void testGetUserList() {
 		
 		try {
-			List<User> userList = mapper.getUserList();
+			List<User> userList = mapper.selectAll();
 			assertNotNull(userList);
 		} catch (Exception e) {
 			e.printStackTrace();

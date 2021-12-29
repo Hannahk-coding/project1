@@ -35,7 +35,7 @@ public class DataSourceConfig implements TransactionManagementConfigurer {
 	}
 	
 	@Bean
-	public DataSource datasource() {
+	public DataSource dataSource() {
 		return new HikariDataSource(hikariConfig());
 	}
 	
@@ -43,7 +43,7 @@ public class DataSourceConfig implements TransactionManagementConfigurer {
 	@Bean
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-		sqlSessionFactory.setDataSource(datasource());
+		sqlSessionFactory.setDataSource(dataSource());
 		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/*.xml"));
 		return sqlSessionFactory.getObject();
 	}
@@ -55,7 +55,7 @@ public class DataSourceConfig implements TransactionManagementConfigurer {
 	
 	@Bean
     public PlatformTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(datasource());
+        return new DataSourceTransactionManager(dataSource());
     }
 	
 	@Override

@@ -2,13 +2,10 @@ package com.jw.user.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jw.user.mapper.UserMapper;
 import com.jw.user.model.User;
-
-import lombok.Setter;
 
 @Service
 public class userServiceImpl implements userService {
@@ -20,28 +17,28 @@ public class userServiceImpl implements userService {
 	}
 	
 	@Override
-	public List<User> getUserList() throws Exception {
-		return mapper.getUserList();
+	public List<User> getList() throws Exception {
+		return mapper.selectAll();
 	}
 
 	@Override
 	public User getUserById(String id) {
-		return mapper.getUserById(id);
+		return mapper.selectById(id);
 	}
 
 	@Override
-	public User registerUser(User user) {
-		return mapper.registerUser(user);
+	public User addUser(User user) {
+		return mapper.insert(user);
 	}
 
 	@Override
-	public void modifyUser(User user) {
-		mapper.modifyUser(user);
+	public void editUser(User user) {
+		mapper.update(user);
 	}
 
 	@Override
 	public void removeUser(String id) {
-		mapper.removeUser(id);
+		mapper.delete(id);
 	}
 
 }

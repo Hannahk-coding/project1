@@ -41,6 +41,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 		return produces;
 	}
 	
+	@SuppressWarnings("unused")
 	private ApiInfo getApiInfo() {
 		return new ApiInfoBuilder().title("REST API CRUD 만들기").description("API Docs").version("1.0").build();
 	}

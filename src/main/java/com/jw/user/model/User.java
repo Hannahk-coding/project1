@@ -2,9 +2,6 @@ package com.jw.user.model;
 
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
 import org.apache.ibatis.type.Alias;
 
 import io.swagger.annotations.ApiModel;

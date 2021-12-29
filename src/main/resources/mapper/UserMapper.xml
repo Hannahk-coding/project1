@@ -2,18 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jw.user.mapper.UserMapper">
-	<select id="getUserList" resultType="User">
+	<select id="getUserList" resultType="user">
 		SELECT *
 		  FROM user
 	</select>
 	
-	<select id="getUserById" parameterType="String" resultType="User">
+	<select id="getUserById" parameterType="String" resultType="user">
 		SELECT *
 		  FROM user
 		 WHERE id = #{id}
 	</select>
 	
-	<insert id="registerUser" parameterType="User">
+	<insert id="registerUser" parameterType="user">
 		insert into user
 			(
 				 id
@@ -30,7 +30,7 @@
 			 )
 	</insert>
 	
-	<update id="modifyUser" parameterType="com.jw.user.model.User">
+	<update id="modifyUser" parameterType="user">
 		UPDATE user
 		   SET name = #{name}
 		     , email = #{email}
