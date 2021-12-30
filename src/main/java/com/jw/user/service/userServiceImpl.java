@@ -41,4 +41,9 @@ public class userServiceImpl implements userService {
 		mapper.delete(id);
 	}
 
+	@Override
+	public User getUserList() throws Exception {
+		return mapper.selectList();
+	}
+
 }

@@ -13,14 +13,11 @@ public class UserInterceptor implements HandlerInterceptor {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Override
-	public boolean preHandle( HttpServletRequest request
-						    , HttpServletResponse response
-						    , Object handler ) throws Exception {
-		if (logger.isDebugEnabled()) {
-            logger.debug("===== ===== ===== ===== =====    START     ===== ===== ===== ===== =====");
-            logger.debug("RequestURI:[{}]", request.getRequestURI());
-        }
+	public boolean preHandle( HttpServletRequest request, HttpServletResponse response, Object handler ) throws Exception {
 		
+		logger.info("===============================================");
+		logger.info("==================== BEGIN ====================");
+		logger.info("Request URI ===> " + request.getRequestURI());
 		return true;
 	}
 	
@@ -29,9 +26,8 @@ public class UserInterceptor implements HandlerInterceptor {
 						  , HttpServletResponse response
 						  , Object handler
 						  , ModelAndView modelAndView ) throws Exception {
-		if (logger.isDebugEnabled()) {
-            logger.debug("===== ===== ===== ===== =====     END     ===== ===== ===== ===== =====\n");
-        }
+		logger.info("==================== END ======================");
+		logger.info("===============================================");
 	}
 	
 	@Override
