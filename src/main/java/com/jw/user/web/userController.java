@@ -32,11 +32,4 @@ public class userController {
 		return mv;
 	}
 	
-	@GetMapping("/test1")
-	public String getList(Model model) throws Exception {
-		User user = service.getUserList();
-		model.addAttribute("user", user);
-		return "user/list";
-	}
-	
 }

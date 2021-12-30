@@ -21,6 +21,4 @@ public interface userService {
 	/** 회원 삭제 */
 	public void removeUser(String id) throws Exception;
 
-	public User getUserList() throws Exception;
-
 }

@@ -39,9 +39,4 @@
 		  FROM user
 		 WHERE name = #{name}
 	</delete>
-	
-	<select id="selectList" resultType="user">
-		SELECT *
-		  FROM user
-	</select>
 </mapper>			

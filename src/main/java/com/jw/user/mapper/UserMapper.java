@@ -19,6 +19,5 @@ public interface UserMapper {
 
 	void delete(String id) throws Exception;
 
-	User selectList() throws Exception;
 }	
 	
