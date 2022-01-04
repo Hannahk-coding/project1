@@ -7,15 +7,13 @@ import org.apache.ibatis.type.Alias;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @ApiModel(value = "사용자 정보 : User", description = "사용자 정보")
 @Data
+@NoArgsConstructor
 @Alias("user")
 public class User {
-	
-	public User() {
-	}
-	
 	@ApiModelProperty(value = "사용자 아이디")
 	private String id;
 	@ApiModelProperty(value = "사용자 이름")

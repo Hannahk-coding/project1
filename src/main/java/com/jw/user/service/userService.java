@@ -13,10 +13,10 @@ public interface userService {
 	public User getUserById(String id) throws Exception;
 	
 	/** 회원 등록 */
-	public User addUser(User user) throws Exception;
+	public User add(User user) throws Exception;
 
 	/** 회원 정보 수정 */
-	public void editUser(User user) throws Exception;
+	public void edit(User user) throws Exception;
 
 	/** 회원 삭제 */
 	public void removeUser(String id) throws Exception;

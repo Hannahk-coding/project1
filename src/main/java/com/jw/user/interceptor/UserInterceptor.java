@@ -8,16 +8,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class UserInterceptor implements HandlerInterceptor {
-	
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Override
 	public boolean preHandle( HttpServletRequest request, HttpServletResponse response, Object handler ) throws Exception {
 		
-		logger.info("===============================================");
-		logger.info("==================== BEGIN ====================");
-		logger.info("Request URI ===> " + request.getRequestURI());
+		log.info("===============================================");
+		log.info("==================== BEGIN ====================");
+		log.info("Request URI ===> " + request.getRequestURI());
 		return true;
 	}
 	
@@ -26,8 +27,8 @@ public class UserInterceptor implements HandlerInterceptor {
 						  , HttpServletResponse response
 						  , Object handler
 						  , ModelAndView modelAndView ) throws Exception {
-		logger.info("==================== END ======================");
-		logger.info("===============================================");
+		log.info("==================== END ======================");
+		log.info("===============================================");
 	}
 	
 	@Override
@@ -35,7 +36,7 @@ public class UserInterceptor implements HandlerInterceptor {
 					           , HttpServletResponse response
 					           , Object handler
 					           , Exception ex ) throws Exception {
-		logger.info("===== ===== ===== ===== ===== afterCompletion");
+		log.info("===== ===== ===== ===== ===== afterCompletion");
 	}
 	
 }

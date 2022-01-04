@@ -3,7 +3,8 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.jw.user.model.User" alias="user"/>
+		<package name="com.jw.*.model"/>
+<!-- 		<typeAlias type="com.jw.user.model.User" alias="user"/> -->
 	</typeAliases>
 </configuration>
 

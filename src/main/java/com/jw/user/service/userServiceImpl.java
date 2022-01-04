@@ -2,6 +2,8 @@ package com.jw.user.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import com.jw.user.mapper.UserMapper;
@@ -27,12 +29,13 @@ public class userServiceImpl implements userService {
 	}
 
 	@Override
-	public User addUser(User user) throws Exception {
+	@Transactional(rollbackOn = Exception.class)
+	public User add(User user) throws Exception {
 		return mapper.insert(user);
 	}
 
 	@Override
-	public void editUser(User user) throws Exception {
+	public void edit(User user) throws Exception {
 		mapper.update(user);
 	}
 

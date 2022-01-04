@@ -7,10 +7,13 @@ import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 
+import lombok.extern.slf4j.Slf4j;
+
 @SpringBootApplication
 @ComponentScan("com.jw")
 @PropertySource("classpath:application-${spring.profiles.active:dev}.properties")
 @EnableAutoConfiguration
+@Slf4j
 public class Application {
 	
 	public static void main(String[] args) {
@@ -19,7 +22,7 @@ public class Application {
 			app.addListeners(new ApplicationPidFileWriter());
 			app.run(args);
 		} catch(Exception e) {
-			e.printStackTrace();
+			log.error("", e);
 		}
 	}
 }
