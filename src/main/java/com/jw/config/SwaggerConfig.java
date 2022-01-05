@@ -1,4 +1,4 @@
-package com.jw.user.config;
+package com.jw.config;
 
 import java.util.HashSet;
 import java.util.Set;

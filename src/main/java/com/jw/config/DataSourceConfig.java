@@ -1,4 +1,4 @@
-package com.jw.user.config;
+package com.jw.config;
 
 public class DataSourceConfig {
 	
