@@ -10,7 +10,7 @@
 	<select id="selectById" parameterType="String" resultType="user">
 		SELECT *
 		  FROM user
-		 WHERE name = #{name}
+		 WHERE id = #{id}
 	</select>
 	
 	<insert id="insert" parameterType="user">
@@ -30,13 +30,15 @@
 	
 	<update id="update" parameterType="user">
 		UPDATE user
-		   SET email = #{email}
-		 WHERE name = #{name}    
+		   SET name = #{name} 
+		   	 , email = #{email}
+		 WHERE id = #{id}    
 	</update>
 	
 	<delete id="delete" parameterType="String">
 		DELETE
 		  FROM user
-		 WHERE name = #{name}
+		 WHERE id = #{id}
 	</delete>
+	
 </mapper>			

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.jw.user.mapper.UserMapper;
@@ -24,7 +25,7 @@ public class userServiceImpl implements userService {
 	}
 
 	@Override
-	public User getUserById(String id) throws Exception {
+	public List<User> getUserById(String id) throws Exception {
 		return mapper.selectById(id);
 	}
 

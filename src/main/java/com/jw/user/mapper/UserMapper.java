@@ -3,6 +3,7 @@ package com.jw.user.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.http.ResponseEntity;
 
 import com.jw.user.model.User;
 
@@ -11,7 +12,7 @@ public interface UserMapper {
 	
 	List<User> selectAll() throws Exception;
 
-	User selectById(String id) throws Exception;
+	List<User> selectById(String id) throws Exception;
 
 	User insert(User user) throws Exception;
 

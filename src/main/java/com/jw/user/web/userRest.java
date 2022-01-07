@@ -1,5 +1,8 @@
 package com.jw.user.web;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +20,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api(tags = "사용자 관련한 API : /user")
 @RestController
+@CrossOrigin
 @RequestMapping({"/user","/user/v1"})
 public class userRest {
 	
@@ -26,9 +30,15 @@ public class userRest {
 		this.service = service;
 	}
 	
+	@ApiOperation(value = "사용자 전체 조회", notes = "사용자 목록을 아이디로 조회합니다.")
+	@GetMapping
+	public List<User> getUser() throws Exception {
+		return service.getList();
+	}
+		
 	@ApiOperation(value = "사용자 아이디로 조회", notes = "사용자 목록을 아이디로 조회합니다.")
 	@GetMapping("{id}")
-	public User getUserById(@PathVariable String id) throws Exception {
+	public List<User> getUserById(@PathVariable("id") String id) throws Exception {
 		return service.getUserById(id);
 	}
 	
@@ -46,7 +56,7 @@ public class userRest {
 	
 	@ApiOperation(value = "사용자 삭제", notes = "사용자를 삭제합니다.")
 	@DeleteMapping("{id}")
-	public void removeUser(@PathVariable String id) throws Exception {
+	public void removeUser(@PathVariable("id") String id) throws Exception {
 		service.removeUser(id);
 	}
 }

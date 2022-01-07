@@ -2,6 +2,8 @@ package com.jw.user.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.jw.user.model.User;
 
 public interface userService {
@@ -10,7 +12,7 @@ public interface userService {
 	public List<User> getList() throws Exception;
 	
 	/** 아이디로 유저 조회 */
-	public User getUserById(String id) throws Exception;
+	public List<User> getUserById(String id) throws Exception;
 	
 	/** 회원 등록 */
 	public User add(User user) throws Exception;
@@ -20,5 +22,7 @@ public interface userService {
 
 	/** 회원 삭제 */
 	public void removeUser(String id) throws Exception;
+
+	
 
 }

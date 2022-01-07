@@ -16,7 +16,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle( HttpServletRequest request, HttpServletResponse response, Object handler ) throws Exception {
 		
-		log.info("===============================================");
 		log.info("==================== BEGIN ====================");
 		log.info("Request URI ===> " + request.getRequestURI());
 		return true;
@@ -28,7 +27,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 						  , Object handler
 						  , ModelAndView modelAndView ) throws Exception {
 		log.info("==================== END ======================");
-		log.info("===============================================");
 	}
 	
 	@Override
