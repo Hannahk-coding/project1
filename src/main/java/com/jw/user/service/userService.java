@@ -15,7 +15,7 @@ public interface userService {
 	public List<User> getUserById(String id) throws Exception;
 	
 	/** 회원 등록 */
-	public User add(User user) throws Exception;
+	public void add(User user) throws Exception;
 
 	/** 회원 정보 수정 */
 	public void edit(User user) throws Exception;

@@ -44,8 +44,8 @@ public class userRest {
 	
 	@ApiOperation(value = "사용자 등록", notes = "사용자를 등록합니다.")
 	@PostMapping
-	public User addUser(@RequestBody User user) throws Exception {
-		return service.add(user);
+	public void addUser(@RequestBody User user) throws Exception {
+		service.add(user);
 	}
 	
 	@ApiOperation(value = "사용자 수정", notes = "사용자 정보를 수정합니다.")

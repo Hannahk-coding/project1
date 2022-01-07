@@ -31,8 +31,8 @@ public class userServiceImpl implements userService {
 
 	@Override
 	@Transactional(rollbackOn = Exception.class)
-	public User add(User user) throws Exception {
-		return mapper.insert(user);
+	public void add(User user) throws Exception {
+		mapper.insert(user);
 	}
 
 	@Override

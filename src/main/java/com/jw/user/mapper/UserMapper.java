@@ -14,7 +14,7 @@ public interface UserMapper {
 
 	List<User> selectById(String id) throws Exception;
 
-	User insert(User user) throws Exception;
+	void insert(User user) throws Exception;
 
 	void update(User user) throws Exception;
 
