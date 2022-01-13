@@ -12,20 +12,21 @@
 			<table class="user_detail">
 				<tr>
 					<td>이 름:</td>
-        			<td><input type="text"> </td>
+        			<td><input type="text" id="name"> </td>
 				</tr>
 				<tr>
 					<td>아매일:</td>
-        			<td><input type="text"> </td>
+        			<td><input type="text" id="email"> </td>
 				</tr>
 				<tr align="center">
 			        <td colspan="2">
-			           <input type="submit" value="등록">
+			           <input type="submit" id="btnRgtr" value="등록">
 			           <input type="reset" value="취소">
 			        </td>       
 		      	</tr>
 			</table>
 		</form>
 	</div>
+<script th:src="@{/js/user.js}"></script>
 </body>
 </html>

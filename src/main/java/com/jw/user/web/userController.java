@@ -31,4 +31,9 @@ public class userController {
 		return mv;
 	}
 	
+	@GetMapping("/register")
+	public String getUserRegister() {
+		return "user/userRegister";
+	}
+	
 }
