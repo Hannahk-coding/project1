@@ -32,7 +32,7 @@ public class userController {
 	}
 	
 	@GetMapping("/register")
-	public String getUserRegister() {
+	public String getUserRegister() { 
 		return "user/userRegister";
 	}
 	

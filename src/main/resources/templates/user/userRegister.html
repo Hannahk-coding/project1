@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 등록</title>
-<link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css"></link>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <body>
 	<div class="container">
 		<h2>사용자 등록</h2>
-		<form id="frm" name="frm" method="post">
+		<form id="frm" name="frm" method="post" th:action="@{/user}">
 			<table class="user_detail">
 				<tr>
 					<td>이 름:</td>
-        			<td><input type="text" id="name"> </td>
+        			<td><input type="text" id="name" name="name"></td>
 				</tr>
 				<tr>
-					<td>아매일:</td>
-        			<td><input type="text" id="email"> </td>
+					<td>이 메 일:</td>
+        			<td><input type="text" id="email" name="email"></td>
 				</tr>
 				<tr align="center">
 			        <td colspan="2">
@@ -27,6 +27,5 @@
 			</table>
 		</form>
 	</div>
-<script th:src="@{/js/user.js}"></script>
 </body>
 </html>
