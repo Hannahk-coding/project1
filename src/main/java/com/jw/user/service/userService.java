@@ -2,8 +2,6 @@ package com.jw.user.service;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
-
 import com.jw.user.model.User;
 
 public interface userService {

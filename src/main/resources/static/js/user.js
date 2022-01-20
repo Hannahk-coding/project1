@@ -1,6 +1,6 @@
-/**
- * 
- */
+
+var frm = $("#frm").serialize();
+
 let index = {
 		init: function() {
 			$("#btnRgtr").on("click", () => {	// this를 바인딩하기 위해 화살표 함수 사용
@@ -8,15 +8,10 @@ let index = {
 			});
 		},
 		register: function() {
-			let data = {	// Javascipt Object
-				name: $("#name").val(),
-				email: $("#email").val()
-			}
-			
 			$.ajax({
 				type: "POST",
-				url: "/user/reg",
-				data: JSON.stringify(data),
+				url: "/user",
+				data: frm,
 				contentType: "application/json;charset=UTF-8",
 				dataType: "json"
 			}).done(function(res){

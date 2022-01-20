@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.jw.user.mapper.UserMapper;
 import com.jw.user.model.User;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
 public class userServiceImpl implements userService {
 	

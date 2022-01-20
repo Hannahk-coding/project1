@@ -1,14 +1,47 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>회원 등록</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btnRgtr").on("click",function(){
+			var data = {
+					name : $("#name").val(),
+					email : $("#email").val()
+				};
+			
+			$.ajax({
+				type: "post",
+				url: "/user",
+				data: JSON.stringify(data), 
+				contentType: "application/json;charset=UTF-8",
+				dataType: "text",
+				success: function(data){
+					alert("회원가입이 완료되었습니다.");
+				},
+				error : function(request, status, error){
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+				},
+				complete: function() {
+					location.href="/list";
+				}
+			});
+		});
+		
+		$("#back2list").on("click", function() {
+			location.href="/list";
+		});
+	});
+	
+</script>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <body>
 	<div class="container">
 		<h2>사용자 등록</h2>
-		<form id="frm" name="frm" method="post" th:action="@{/user}">
+		<form id="frm" name="frm">
 			<table class="user_detail">
 				<tr>
 					<td>이 름:</td>
@@ -20,12 +53,14 @@
 				</tr>
 				<tr align="center">
 			        <td colspan="2">
-			           <input type="submit" id="btnRgtr" value="등록">
+			           <button type="button" id="btnRgtr">등록</button>
 			           <input type="reset" value="취소">
+			           <button type="button" id="back2list">목록</button>
 			        </td>       
 		      	</tr>
 			</table>
 		</form>
 	</div>
+
 </body>
 </html>
