@@ -3,19 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <title>사용자 목록</title>
+
+<style type="text/css">
+	td {
+		text-align:center;
+	}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	function deleteUser() {
+		var valArr = [];
+		var list = $("input[name=rowChk]");
+
+		$("input[name=rowChk]:checked").each(function(){
+			valArr.push($(this).val());
+		});
+		
+		if(valArr.length == 0) {
+			alert("선택된 사용자가 없습니다.");
+		}
+		else  {
+			if(confirm("삭제하시겠습니까?")) {
+				
+				for(var j=0; j<valArr.length; j++) {
+					$.ajax({
+						url: "/user/" + valArr[j],
+						type: "DELETE",
+						data: { "id" : valArr[j] },
+						dataType: "json",
+						success: function(data) {
+							alert("삭제되었습니다.");
+						},
+						error: function(request, status, error) {
+							 alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+						},
+						complete: function() {
+							location.href= "/list";
+						}
+					});
+				}
+			}
+		}
+	}
+</script>
 </head>
 <body>
 	<div class="container">
 		<h2>사용자 목록</h2>
 		<table class="userList">
 			<colgroup>
+				<col width="5%"/>
+				<col width="8%"/>
 				<col width="15%" />
-				<col width="*" />
-				<col width="*" />
+				<col width="30%" />
 				<col width="20%" />
 			</colgroup>
 			<thead>
 				<tr>
+					<th scope="col"></th>
 					<th scope="col">ID</th>
 					<th scope="col">NAME</th>
 					<th scope="col">EMAIL</th>
@@ -24,9 +72,10 @@
 			</thead>
 			<tbody>
 				<tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
+					<td><input name="rowChk" type="checkbox" th:value="${list.id}"></td>
 					<td th:text="${list.id}"></td>
-					<td class="name" th:text="${list.name}"></td>
-					<td th:text="${list.email}"></td>
+					<td class="name" th:text="${list.name}" ></td>
+					<td th:text="${list.email}" ></td>
 					<td th:text="${list.createTime}"></td>
 				</tr>
 				<tr th:unless="${#lists.size(list)} > 0">
@@ -34,7 +83,10 @@
 				</tr>
 			</tbody>
 		</table>
-		<a href="/register" id="btnSave">등록</a>
+		<div style="text-align:right; padding: 40px 350px;">
+			<a href="/register" id="btnSave" style="text-decoration: none;">등록</a>
+			<a id="btnDel" style="text-decoration: none; cursor:pointer;" onclick="deleteUser();">삭제</a>
+		</div>
 	</div>
 </body>
 </html>
